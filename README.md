@@ -1,1 +1,0 @@
-# paplu_vegetable
