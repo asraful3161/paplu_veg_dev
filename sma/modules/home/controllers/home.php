@@ -22,50 +22,47 @@ class Home extends CI_Controller {
 */
 
 	 
-	function __construct()
-	{
+	function __construct(){
+
 		parent::__construct();
 		
 		// check if user logged in 
-		if (!$this->ion_auth->logged_in())
-	  	{
-			redirect('auth/login');
-	  	}
+		if(!$this->ion_auth->logged_in()) redirect('auth/login');
+
 		$this->load->library('form_validation');
 		//$this->security->csrf_verify(); 
 		$this->load->model('home_model');	
 		
 	}
 	
-   function index()
-   {
+	function index(){
 	   
-	   $this->form_validation->set_rules('comment', $this->lang->line("comment"), 'xss_clean');
+	   	$this->form_validation->set_rules('comment', $this->lang->line("comment"), 'xss_clean');
 	  
-	  if ( $this->form_validation->run() == true && $this->home_model->updateComment($comment) )
-		{ 
-				$this->session->set_flashdata('success_message', $this->lang->line("comment_updated"));
-				redirect("module=home", 'refresh');
-	
-		}
-		else
-		{ 
+	  	if($this->form_validation->run()==true && $this->home_model->updateComment($comment)){ 
 
-	  
-	  $data['message'] = (validation_errors() ? validation_errors() : $this->session->flashdata('message'));
-	  $data['success_message'] = $this->session->flashdata('success_message');
-	  	   
-	  $data['com'] = $this->home_model->getComment();	
-	  $data['monthly_sales'] = $this->home_model->getChartData();
-	  $data['topProducts'] = $this->home_model->topProducts();
-	  $data['stock'] = $this->home_model->getStockValue();
-	  	
-      $meta['page_title'] = $this->lang->line("welcome")." ".SITE_NAME."!";
-	  $data['page_title'] = $this->lang->line("welcome")." ".SITE_NAME."!";
-      $this->load->view('commons/header', $meta);
-      $this->load->view('content', $data);
-      $this->load->view('commons/footer');
-   	}
+			$this->session->set_flashdata('success_message', $this->lang->line("comment_updated"));
+				redirect("module=home", 'refresh');
+
+		}else{
+
+		  	$data['message'] = (validation_errors() ? validation_errors() : $this->session->flashdata('message'));
+		  	$data['success_message'] = $this->session->flashdata('success_message');
+		  	   
+		  	$data['com'] = $this->home_model->getComment();
+
+		  	$data['monthly_sales'] = $this->home_model->getChartData()?$this->home_model->getChartData():[];
+
+		  	$data['topProducts'] = $this->home_model->topProducts();
+		  	$data['stock'] = $this->home_model->getStockValue();
+		  	
+	      	$meta['page_title'] = $this->lang->line("welcome")." ".SITE_NAME."!";
+		  	$data['page_title'] = $this->lang->line("welcome")." ".SITE_NAME."!";
+	      	$this->load->view('commons/header', $meta);
+	      	$this->load->view('content', $data);
+	      	$this->load->view('commons/footer');
+
+   		}
    }
    
    function update_comment()

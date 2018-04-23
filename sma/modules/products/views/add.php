@@ -78,7 +78,7 @@ $(document).ready(function(){
 </div>
 <div class="control-group">
   <label class="control-label" for="weight">Weight</label>
-  <div class="controls"> <?php echo form_input($weight, (isset($_POST['weight']) ? $_POST['weight'] : ""), 'class="span4 tip" id="weight" title="Product weight for reference" required="required" data-error="'.Product.' '.Weight.' '.$this->lang->line("is_required").'"'); ?>Kg</div>
+  <div class="controls"> <?php echo form_input($weight, (isset($_POST['weight']) ? $_POST['weight'] : ""), 'class="span4 tip" id="weight" title="Product weight for reference" required="required" data-error="'.'Product'.' '.'Weight'.' '.$this->lang->line("is_required").'"'); ?>Kg</div>
 </div>         
 <div class="control-group">
   <label class="control-label" for="size"><?php echo $this->lang->line("size"); ?></label>

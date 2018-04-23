@@ -16,7 +16,7 @@
 
 /* I will thankful if you could help me translating this file to your language and email me at saleem@tecdiary.com */
 
-
+$lang['all']							= "Tout";
 $lang['home'] 							= 'Accueil';
 $lang['products'] 						= 'Produits';
 $lang['new_product'] 					= 'Nouveau produit';
@@ -65,6 +65,22 @@ $lang['add_by_csv'] 					= 'Ajouter produit par CSV';
 $lang['purchases_report'] 				= 'Rapport d&prime;achat';
 $lang['csv_inventory'] 					= 'Ajouter des achats par CSV';
 $lang['sales_report'] 					= 'Rapport de vente';
+$lang['outstanding_sales_report']		= "Rapport de vente exceptionnel";
+$lang['outstanding_client_report']		= "Rapport client exceptionnel";
+
+$lang['invoice_amount']					= "Montant de la facture";
+$lang['less_amount']					= "Moins de montant";
+$lang['paid_amount']					= "Montant payé";
+$lang['outstanding_amount']				= "Encours";
+$lang['paid_by']						= "Payé par";
+$lang['charge_amount']					= "Montant de la charge";
+
+$lang['last_payment']					= "Dernier paiement";
+$lang['contact']						= "Contact";
+$lang['total_paid']						= "Total payé";
+$lang['total_adjustment']				= "Ajustement total";
+$lang['total_unpaid']					= "Total impayé";
+
 $lang['upload_biller_logo'] 			= 'Telechargez logo de facturation';
 $lang['install'] 						= 'Vous devez supprimer le dossier &prime;install&prime;';
 $lang['purchases'] 						= 'Ventes';

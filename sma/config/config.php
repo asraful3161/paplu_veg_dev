@@ -14,9 +14,9 @@
 | path to your installation.
 |
 */
-//$config['base_url']	= 'http://localhost/web/sma';
+$config['base_url']	= 'http://localhost/paplu_vegetable/';
 
-$config['base_url']	= 'http://awesome.dev/sow/sma/';
+//$config['base_url']	= 'http://awesome.dev/sow/sma/';
 
 /*
 |--------------------------------------------------------------------------

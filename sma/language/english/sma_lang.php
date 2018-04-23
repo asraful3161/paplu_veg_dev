@@ -13,7 +13,7 @@
 
 /* I will thankful if you could help me translating this file to your language and email me at saleem@tecdiary.com */
 
-
+$lang['all']							= "All";
 $lang['home'] 							= "Home";
 $lang['products'] 						= "Products";
 $lang['new_product'] 					= "New Product";
@@ -65,6 +65,22 @@ $lang['add_by_csv'] 					= "Add Products by CSV";
 $lang['purchases_report'] 				= "Purchases Report";
 $lang['csv_inventory'] 					= "Add Purchase by CSV";
 $lang['sales_report'] 					= "Sales Report";
+$lang['outstanding_sales_report']		= "Outstanding Sales Report";
+$lang['outstanding_client_report']		= "Outstanding Client Report";
+
+$lang['invoice_amount']					= "Invoice Amount";
+$lang['less_amount']					= "Less Amount";
+$lang['paid_amount']					= "Paid Amount";
+$lang['outstanding_amount']				= "Outstanding Amount";
+$lang['paid_by']						= "Paid By";
+$lang['charge_amount']					= "Charge Amount";
+
+$lang['last_payment']					= "Last Payment";
+$lang['contact']						= "Contact";
+$lang['total_paid']						= "Total Paid";
+$lang['total_adjustment']				= "Total Adjustment";
+$lang['total_unpaid']					= "Total Unpaid";
+
 $lang['upload_biller_logo'] 			= "Upload Biller Logo";
 $lang['install'] 						= "You must delete the 'install' folder from";
 $lang['purchases'] 						= "Purchases";

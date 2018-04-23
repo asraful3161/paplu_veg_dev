@@ -16,7 +16,7 @@
 
 /* I will thankful if you could help me translating this file to your language and email me at saleem@tecdiary.com */
 
-
+$lang['all']							= "Všechno";
 $lang['home'] 							= "Hlavní stránka";
 $lang['products'] 						= "Produkty";
 $lang['new_product'] 					= "Nový produkt";
@@ -68,6 +68,22 @@ $lang['add_by_csv'] 					= "Pridat produktu pres CSV";
 $lang['purchases_report'] 				= "Zpráva Nákupu";
 $lang['csv_inventory'] 					= "Pridat Nákup pres CSV";
 $lang['sales_report'] 					= "Prodej Zpráva";
+$lang['outstanding_sales_report']		= "Neuhradená zpráva o prodeji";
+$lang['outstanding_client_report']		= "Vynikající zpráva klienta";
+
+$lang['invoice_amount']					= "Částka faktury";
+$lang['less_amount']					= "Méně částky";
+$lang['paid_amount']					= "Uhrazená suma";
+$lang['outstanding_amount']				= "Nesplacená částka";
+$lang['paid_by']						= "Hradí";
+$lang['charge_amount']					= "Částka poplatku";
+
+$lang['last_payment']					= "Poslední platba";
+$lang['contact']						= "Kontakt";
+$lang['total_paid']						= "Celkem zaplaceno";
+$lang['total_adjustment']				= "Úplné nastavení";
+$lang['total_unpaid']					= "Celkem neplaceno";
+
 $lang['upload_biller_logo'] 			= "Pridat logo";
 $lang['install'] 						= "Je nutné odstranit 'Instalovat' ze složky";
 $lang['purchases'] 						= "Objednávki";

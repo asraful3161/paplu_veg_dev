@@ -35,9 +35,18 @@
 */
 
 // The following values will probably need to be changed.
+
+/*
 $db['default']['username'] = "root";
 $db['default']['password'] = "123";   
 $db['default']['database'] = "sow_sma";
+*/
+
+$db['default']['username'] = "root";
+$db['default']['password'] = "12345678";   
+$db['default']['database'] = "paplu_vegetable_dev";
+$db['default']['port'] = 3307;
+
 
 // The following values can probably stay the same. 
 $db['default']['hostname'] = "localhost";

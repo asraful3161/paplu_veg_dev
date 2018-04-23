@@ -17,6 +17,7 @@
 
 #Header
 
+$lang['all'] 							= "Toate";
 $lang['home'] 							= "Home";
 $lang['products'] 						= "Produse";
 $lang['new_product'] 					= "Adauga Produs";
@@ -64,6 +65,22 @@ $lang['add_by_csv'] 					= "Adauga produse by CSV";
 $lang['purchases_report'] 				= "Raport Intrari";
 $lang['csv_inventory'] 					= "Adauga intrare by CSV";
 $lang['sales_report'] 					= "Raport vanzari";
+$lang['outstanding_sales_report']		= "Raport de vânzări remarcabil";
+$lang['outstanding_client_report']		= "Raport de clienți remarcabil";
+
+$lang['invoice_amount']					= "Valoarea facturii";
+$lang['less_amount']					= "Sumă mai mică";
+$lang['paid_amount']					= "Suma plătită";
+$lang['outstanding_amount']				= "Suma restanta";
+$lang['paid_by']						= "Platit de";
+$lang['charge_amount']					= "Suma taxei";
+
+$lang['last_payment']					= "Ultima plata";
+$lang['contact']						= "a lua legatura";
+$lang['total_paid']						= "Plata totala";
+$lang['total_adjustment']				= "Ajustare totală";
+$lang['total_unpaid']					= "Total Neachitate";
+
 $lang['upload_biller_logo'] 			= "Adauga Logo pentru Vanzator";
 $lang['install'] 						= "Treubie sa stergeti folderul 'install'";
 $lang['purchases'] 						= "Intrari";
@@ -158,7 +175,7 @@ $lang['login_to'] 						= "Autentificare pentru a gestiona stocul";
 $lang['forgot_pw'] 						= "Ati uitat parola?";
 $lang['remember_me'] 					= "Tine-ma minte";
 $lang['back_to_login'] 					= "Inapoi la pagina de autentificare";
-$lang['email_to_reset_pw'] 				= "Te rugam sa introduci adresa ta de email astfel �nc�t sa putem trimite un e-mail pentru a reseta parola";
+$lang['email_to_reset_pw'] 				= "Te rugam sa introduci adresa ta de email astfel încât sa putem trimite un e-mail pentru a reseta parola";
 $lang['submit'] = "Submit";
 
 
@@ -295,7 +312,7 @@ $lang['total'] 							= "Total";
 $lang['view_invoice'] 					= "Vizualizare Factura";
 $lang['email_invoice'] 					= "Trimite Factura prin E-mail";
 $lang['edit_invoice'] 					= "Modifica Factura";
-$lang['chart_heading'] 					= "Va rugam sa revizuiti v�nzarile totale pentru fiecare luna! Aveti posibilitatea sa salvati Graficul in format jpg, png si pdf.";
+$lang['chart_heading'] 					= "Va rugam sa revizuiti vânzarile totale pentru fiecare luna! Aveti posibilitatea sa salvati Graficul in format jpg, png si pdf.";
 $lang['product_reports'] 				= "Raport Produse";
 $lang['purchase_reports'] 				= "Raport Intrari";
 $lang['sale_reports'] 					= "Raport Vanzari";
@@ -304,7 +321,7 @@ $lang['product_alerts'] 				= "Alerta Produse";
 $lang['report_type'] 					= "Tip Raport";
 $lang['get_report'] 					= "Cere Raport";
 $lang['stock_balance'] 					= "Balanta de stoc";
-$lang['no_report'] 						= "Nimic pentru a afisa! Va rugam sa �ncercati din nou cu alta interogare";
+$lang['no_report'] 						= "Nimic pentru a afisa! Va rugam sa încercati din nou cu alta interogare";
 $lang['start_date'] 					= "Din Data";
 $lang['end_date'] 						= "Catre Data";
 

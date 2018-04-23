@@ -199,7 +199,7 @@ $(function () {
 
 <h3 class="title"><?php echo $page_title; ?></h3>
 
-<?php if ($com->comment) { echo "<div class=\"alert alert-info\" style='position:relative;'><button type=\"button\" class=\"close\" data-dismiss=\"alert\"><i class='icon-remove'></i></button>".html_entity_decode($com->comment)."</div>"; } ?>
+<?php if(isset($com->comment)) { echo "<div class=\"alert alert-info\" style='position:relative;'><button type=\"button\" class=\"close\" data-dismiss=\"alert\"><i class='icon-remove'></i></button>".html_entity_decode($com->comment)."</div>"; } ?>
 
 
 <div class="row-fluid">

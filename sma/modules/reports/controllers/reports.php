@@ -22,22 +22,17 @@ class Reports extends MX_Controller {
 */
 
 	 
-	function __construct()
-	{
+	function __construct(){
+
 		parent::__construct();
 		
 		// check if user logged in 
-		if (!$this->ion_auth->logged_in())
-	  	{
-			redirect('module=auth&view=login');
-	  	}
+		if(!$this->ion_auth->logged_in()) redirect('module=auth&view=login');
 		
 		$this->load->model('reports_model');
-
 	}
 	
-   function index()
-   {
+   function index(){
 	   
 	   $data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 	   
@@ -48,8 +43,7 @@ class Reports extends MX_Controller {
       $this->load->view('commons/footer');
    }
    
-   function products($alerts = "alerts")
-   {
+   function products($alerts = "alerts"){
 	   
 
 	//$data['n'] = $this->reports_model->get_total_alerts();
@@ -60,8 +54,7 @@ class Reports extends MX_Controller {
       $this->load->view('commons/footer');
    }
    
-    function getProductAlerts()
-   {
+    function getProductAlerts(){
  
 	   $this->load->library('datatables');
 
@@ -85,10 +78,9 @@ class Reports extends MX_Controller {
 
    }
    
-   function overview()
-   {
+   function overview(){
 	   
-	  $data['monthly_sales'] = $this->reports_model->getChartData();
+	  $data['monthly_sales'] = $this->reports_model->getChartData()?$this->reports_model->getChartData():[];
 	  $data['stock'] = $this->reports_model->getStockValue();
 	  $meta['page_title'] = $this->lang->line("stock_chart");
 	  $data['page_title'] = $this->lang->line("stock_chart");
@@ -97,12 +89,12 @@ class Reports extends MX_Controller {
       $this->load->view('commons/footer');
    }
    
-   function warehouse_stock()
-   {
+   function warehouse_stock(){
+
 	  if($this->input->get('warehouse')){ $warehouse = $this->input->get('warehouse'); } else { $warehouse = DEFAULT_WAREHOUSE; }
 	   
 	  $data['stock'] = $this->reports_model->getWarehouseStockValue($warehouse);
-	  $data['warehouses'] = $this->reports_model->getAllWarehouses();
+	  $data['warehouses'] = $this->reports_model->getAllWarehouses()?$this->reports_model->getAllWarehouses():[];
 	  $data['warehouse_id'] = $warehouse;
 	  $meta['page_title'] = $this->lang->line("warehouse_stock_value");
 	  $data['page_title'] = $this->lang->line("stock_value");
@@ -111,83 +103,23 @@ class Reports extends MX_Controller {
       $this->load->view('commons/footer');
    }
    
-   
-   
-   function sales()
-   {
+   function purchases(){
+
 	  $data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');	   
 	  $data['users'] = $this->reports_model->getAllUsers();
-	  $data['warehouses'] = $this->reports_model->getAllWarehouses();
-	  $data['customers'] = $this->reports_model->getAllCustomers();
-	  $data['billers'] = $this->reports_model->getAllBillers();
-	   
-      $meta['page_title'] = $this->lang->line("sale_reports");
-	  $data['page_title'] = $this->lang->line("sale_reports");
-      $this->load->view('commons/header', $meta);
-      $this->load->view('sales', $data);
-      $this->load->view('commons/footer');
-   }
-   
-   function getSales()
-   {
- 		//if($this->input->get('name')){ $name = $this->input->get('name'); } else { $name = NULL; }
-		if($this->input->get('user')){ $user = $this->input->get('user'); } else { $user = NULL; }
-		if($this->input->get('customer')){ $customer = $this->input->get('customer'); } else { $customer = NULL; }
-		if($this->input->get('biller')){ $biller = $this->input->get('biller'); } else { $biller = NULL; }
-		if($this->input->get('warehouse')){ $warehouse = $this->input->get('warehouse'); } else { $warehouse = NULL; }
-		if($this->input->get('reference_no')){ $reference_no = $this->input->get('reference_no'); } else { $reference_no = NULL; }
-		if($this->input->get('start_date')){ $start_date = $this->input->get('start_date'); } else { $start_date = NULL; }
-		if($this->input->get('end_date')){ $end_date = $this->input->get('end_date'); } else { $end_date = NULL; }
-		if($start_date) {
-                    $start_date = $this->ion_auth->fsd($start_date);
-                    $end_date = $this->ion_auth->fsd($end_date);
-		}
-	   $this->load->library('datatables');
-	   $this->datatables
-			->select("sales.id as sid,date, reference_no, biller_name, customer_name, GROUP_CONCAT(CONCAT(sale_items.product_name, ' (', sale_items.quantity, ')') SEPARATOR ', <br>') as iname, total_tax, total_tax2, total", FALSE)
-			->from('sales')
-			->join('sale_items', 'sale_items.sale_id=sales.id', 'left')
-			->join('warehouses', 'warehouses.id=sales.warehouse_id', 'left')
-			->group_by('sales.id');
-			
-			
-			if($user) { $this->datatables->like('sales.user', $user); }
-			//if($name) { $this->datatables->like('sale_items.product_name', $name, 'both'); }
-			if($biller) { $this->datatables->like('sales.biller_id', $biller); }
-			if($customer) { $this->datatables->like('sales.customer_id', $customer); }
-			if($warehouse) { $this->datatables->like('sales.warehouse_id', $warehouse); }
-			if($reference_no) { $this->datatables->like('sales.reference_no', $reference_no, 'both'); }
-			if($start_date) { $this->datatables->where('sales.date BETWEEN "'. $start_date. '" and "'.$end_date.'"'); }
-			
-		/*$this->datatables->add_column("Actions", 
-			"<center><a href='#' onClick=\"MyWindow=window.open('index.php?module=sales&view=view_invoice&id=$1', 'MyWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=1000,height=600'); return false;\" title='".$this->lang->line("view_invoice")."' class='tip'><i class='icon-fullscreen'></i></a> 
-			<a href='index.php?module=sales&view=pdf&id=$1' title='".$this->lang->line("download_pdf")."' class='tip'><i class='icon-file'></i></a> 
-			<a href='index.php?module=sales&view=email_invoice&id=$1' title='".$this->lang->line("email_invoice")."' class='tip'><i class='icon-envelope'></i></a>
-			<a href='index.php?module=sales&amp;view=edit&amp;id=$1' title='".$this->lang->line("edit_invoice")."' class='tip'><i class='icon-edit'></i></a>
-			<a href='index.php?module=sales&amp;view=delete&amp;id=$1' onClick=\"return confirm('". $this->lang->line('alert_x_invoice') ."')\" title='".$this->lang->line("delete_invoice")."' class='tip'><i class='icon-trash'></i></a></center>", "sid");*/
-		
-		$this->datatables->unset_column('sid');
-		
-		
-	   echo $this->datatables->generate();
-   }
-   
-   function purchases()
-   {
-	  $data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');	   
-	  $data['users'] = $this->reports_model->getAllUsers();
-	  $data['warehouses'] = $this->reports_model->getAllWarehouses();
-	  $data['suppliers'] = $this->reports_model->getAllSuppliers();
+	  $data['warehouses'] = $this->reports_model->getAllWarehouses()?$this->reports_model->getAllWarehouses():[];
+	  $data['suppliers'] = $this->reports_model->getAllSuppliers()?$this->reports_model->getAllSuppliers():[];
 	   
       $meta['page_title'] = $this->lang->line("purchase_reports");
 	  $data['page_title'] = $this->lang->line("purchase_reports");
       $this->load->view('commons/header', $meta);
       $this->load->view('purchases', $data);
       $this->load->view('commons/footer');
+
    }
    
-   function getPurchases()
-   {
+   function getPurchases(){
+
  		//if($this->input->get('name')){ $name = $this->input->get('name'); } else { $name = NULL; }
 		if($this->input->get('user')){ $user = $this->input->get('user'); } else { $user = NULL; }
 		if($this->input->get('supplier')){ $supplier = $this->input->get('supplier'); } else { $supplier = NULL; }
@@ -221,8 +153,8 @@ class Reports extends MX_Controller {
 	   echo $this->datatables->generate();
    }
    
-   function daily_sales()
-   {
+   function daily_sales(){
+
 	   if($this->input->get('year')){ $year = $this->input->get('year'); } else { $year = date('Y'); }
 	   if($this->input->get('month')){ $month = $this->input->get('month'); } else { $month = date('m'); }
 	  
@@ -310,8 +242,8 @@ class Reports extends MX_Controller {
    }
    
   
-   function monthly_sales()
-   {
+   function monthly_sales(){
+
 	   if($this->input->get('year')){ $year = $this->input->get('year'); } else { $year = date('Y'); }
 
 	   $data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
@@ -325,23 +257,24 @@ class Reports extends MX_Controller {
       $this->load->view('commons/header', $meta);
 	  $this->load->view('monthly', $data);
 	  $this->load->view('commons/footer');
+
    }
    
-   function custom_products()
-   {
+   function custom_products(){
 	  
 	   $data['message'] = (validation_errors() ? validation_errors() : $this->session->flashdata('message'));
 	   if($this->input->post('start_date')){ $dt = "From ".$this->input->post('start_date')." to ".$this->input->post('end_date'); } else { $dt = "Till ".$this->input->post('end_date'); }
       //$meta['page_title'] = $this->lang->line("reports")." ".$dt;
-	  $data['products'] = $this->reports_model->getAllProducts();
+	  $data['products'] = $this->reports_model->getAllProducts()?$this->reports_model->getAllProducts():[];
       $meta['page_title'] = $this->lang->line("product_reports")." ".$dt;
 	  $data['page_title'] = $this->lang->line("product_reports");
       $this->load->view('commons/header', $meta);
       $this->load->view('products', $data);
       $this->load->view('commons/footer');
    }
-   function getCP()
-   {
+
+   function getCP(){
+
 	    if($this->input->get('product')){ $product = $this->input->get('product'); } else { $product = NULL; }
             if($this->input->get('start_date')){ $start_date = $this->input->get('start_date'); } else { $start_date = NULL; }
             if($this->input->get('end_date')){ $end_date = $this->input->get('end_date'); } else { $end_date = NULL; }
@@ -379,5 +312,247 @@ class Reports extends MX_Controller {
 	   echo $this->datatables->generate();
 
    }
+
+   function sales(){
+
+	  $data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+
+	  $data['users'] = $this->reports_model->getAllUsers();
+	  $data['warehouses'] = $this->reports_model->getAllWarehouses();
+	  $data['customers'] = $this->reports_model->getAllCustomers()?$this->reports_model->getAllCustomers():[];
+	  $data['billers'] = $this->reports_model->getAllBillers()?$this->reports_model->getAllBillers():[];
+	   
+      $meta['page_title'] = $this->lang->line("sale_reports");
+	  $data['page_title'] = $this->lang->line("sale_reports");
+      
+      $this->load->view('commons/header', $meta);
+      $this->load->view('sales', $data);
+      $this->load->view('commons/footer');
+
+   }
+   
+	function getSales(){
+
+			//if($this->input->get('name')){ $name = $this->input->get('name'); } else { $name = NULL; }
+		if($this->input->get('user')) $user = $this->input->get('user');
+		else $user = NULL;
+
+		if($this->input->get('customer')) $customer = $this->input->get('customer');
+		else $customer = NULL;
+		
+		if($this->input->get('biller')) $biller=$this->input->get('biller');
+		else $biller=NULL;
+		
+		if($this->input->get('warehouse')) $warehouse=$this->input->get('warehouse');
+		else $warehouse = NULL;
+		
+		if($this->input->get('reference_no')) $reference_no=$this->input->get('reference_no'); 
+		else $reference_no=NULL;
+		
+		if($this->input->get('start_date')) $start_date=$this->input->get('start_date');
+		else $start_date = NULL;
+		
+		if($this->input->get('end_date')) $end_date=$this->input->get('end_date');
+		else $end_date = NULL;
+
+		if($start_date){
+	        $start_date = $this->ion_auth->fsd($start_date);
+	        $end_date = $this->ion_auth->fsd($end_date);
+		}
+
+	   $this->load->library('datatables');
+	   $this->datatables
+			->select("sales.id as sid,date, reference_no, biller_name, customer_name, GROUP_CONCAT(CONCAT(sale_items.product_name, ' (', sale_items.quantity, ')') SEPARATOR ', <br>') as iname, total_tax, total_tax2, total", FALSE)
+			->from('sales')
+			->join('sale_items', 'sale_items.sale_id=sales.id', 'left')
+			->join('warehouses', 'warehouses.id=sales.warehouse_id', 'left')
+			->group_by('sales.id');
+			
+			
+			if($user) { $this->datatables->like('sales.user', $user); }
+			//if($name) { $this->datatables->like('sale_items.product_name', $name, 'both'); }
+			if($biller) { $this->datatables->like('sales.biller_id', $biller); }
+			if($customer) { $this->datatables->like('sales.customer_id', $customer); }
+			if($warehouse) { $this->datatables->like('sales.warehouse_id', $warehouse); }
+			if($reference_no) { $this->datatables->like('sales.reference_no', $reference_no, 'both'); }
+			if($start_date) { $this->datatables->where('sales.date BETWEEN "'. $start_date. '" and "'.$end_date.'"'); }
+			
+		/*$this->datatables->add_column("Actions", 
+			"<center><a href='#' onClick=\"MyWindow=window.open('index.php?module=sales&view=view_invoice&id=$1', 'MyWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=1000,height=600'); return false;\" title='".$this->lang->line("view_invoice")."' class='tip'><i class='icon-fullscreen'></i></a> 
+			<a href='index.php?module=sales&view=pdf&id=$1' title='".$this->lang->line("download_pdf")."' class='tip'><i class='icon-file'></i></a> 
+			<a href='index.php?module=sales&view=email_invoice&id=$1' title='".$this->lang->line("email_invoice")."' class='tip'><i class='icon-envelope'></i></a>
+			<a href='index.php?module=sales&amp;view=edit&amp;id=$1' title='".$this->lang->line("edit_invoice")."' class='tip'><i class='icon-edit'></i></a>
+			<a href='index.php?module=sales&amp;view=delete&amp;id=$1' onClick=\"return confirm('". $this->lang->line('alert_x_invoice') ."')\" title='".$this->lang->line("delete_invoice")."' class='tip'><i class='icon-trash'></i></a></center>", "sid");*/
+		
+		$this->datatables->unset_column('sid');
+		
+		
+	   echo $this->datatables->generate();
+	}
+
+   	public function outstanding_sales(){
+
+   		$data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+   		$meta['page_title'] = $this->lang->line("outstanding_sales_report");
+
+   		$data['customers'] = $this->reports_model->getAllCustomers();
+
+      	$this->load->view('commons/header', $meta);
+      	$this->load->view('outstanding_sales', $data);
+      	$this->load->view('commons/footer');
+
+   	}
+
+   	public function get_outstanding_sales(){
+
+		if($this->input->get('start_date')) $start_date=$this->input->get('start_date');
+		else $start_date = NULL;
+		
+		if($this->input->get('end_date')) $end_date=$this->input->get('end_date');
+		else $end_date = NULL;
+
+		if($start_date){
+	        $start_date = $this->ion_auth->fsd($start_date);
+	        $end_date = $this->ion_auth->fsd($end_date);
+		}
+
+		if($this->input->get('paid_by')) $paid_by=$this->input->get('paid_by');
+		else $paid_by = NULL;
+
+		if($this->input->get('customer')) $customer = $this->input->get('customer');
+		else $customer = NULL;
+
+   		$this->load->library('datatables');
+
+   		/*
+	   	$this->datatables
+			->select("customer_name as customer, SUM(inv_total) as invoice_amount, SUM(customer_balance) as less_amount, SUM(paid) as paid_amount, SUM(inv_total - customer_balance - paid) as outstanding_amount", FALSE)
+			->from('sales')
+			->group_by('customer_id')
+			->where('paid_by','cash');
+			
+			if($start_date) $this->datatables->where('sales.date BETWEEN "'. $start_date. '" and "'.$end_date.'"');
+		*/
+
+
+
+		if($customer){
+
+			$this->datatables->select("DATE_FORMAT(STR_TO_DATE(date, '%d/%m/%Y'), '%Y-%m-%d'), customers.name, bill_amount, less, charge, payment, IFNULL(bill_amount, 0) - IFNULL(payment, 0) - IFNULL(less, 0) + IFNULL(charge, 0)", FALSE)
+			->from('transaction_history')
+			->join('customers', 'customers.id=transaction_history.customer_id')
+			->where('customer_id', $customer);
+
+		}else{
+
+			$this->datatables->select("DATE_FORMAT(STR_TO_DATE(date, '%d/%m/%Y'), '%Y-%m-%d'), customers.name, SUM(bill_amount), SUM(less), SUM(charge), SUM(payment), SUM(IFNULL(bill_amount, 0) - IFNULL(payment, 0) - IFNULL(less, 0) + IFNULL(charge, 0))", FALSE)
+			->from('transaction_history')
+			->join('customers', 'customers.id=transaction_history.customer_id')
+			->group_by('customer_id');
+
+		}
+
+		if($paid_by && $paid_by!='all') $this->datatables->where('paid_by', $paid_by);
+
+		if($start_date) $this->datatables->where("DATE_FORMAT(STR_TO_DATE(transaction_history.date, '%d/%m/%Y'), '%Y-%m-%d') BETWEEN '". $start_date. "' and '".$end_date."'");
+
+		echo $this->datatables->generate();
+   	}
+
+
+   	public function outstanding_client(){
+
+   		$data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+   		$meta['page_title'] = $this->lang->line("outstanding_client_report");
+
+   		$data['customers'] = $this->reports_model->getAllCustomers();
+
+      	$this->load->view('commons/header', $meta);
+      	$this->load->view('outstanding_client', $data);
+      	$this->load->view('commons/footer');
+
+   	}
+
+   	public function get_outstanding_client(){
+
+		if($this->input->get('start_date')){
+
+			$start_date=$this->input->get('start_date');
+			$start_date = $this->ion_auth->fsd($start_date);
+
+		}else $start_date = NULL;
+		
+		if($this->input->get('end_date')){
+
+			$end_date=$this->input->get('end_date');
+			$end_date = $this->ion_auth->fsd($end_date);
+
+		}else $end_date = NULL;
+
+		if($this->input->get('paid_by')) $paid_by=$this->input->get('paid_by');
+		else $paid_by = NULL;
+
+		if($this->input->get('customer')) $customer = $this->input->get('customer');
+		else $customer = NULL;
+
+		/*
+		if($this->input->get('outstanding_amount')) $outstanding_amount = $this->input->get('outstanding_amount');
+		else $outstanding_amount = NULL;
+		*/
+
+		/*
+		if($this->input->get('last_payment')){
+			$last_payment = $this->ion_auth->fsd($this->input->get('last_payment'));
+		}else $last_payment = NULL;
+		*/
+
+   		$this->load->library('datatables');
+
+		if($customer){
+
+			$this->datatables->select("customers.name, customers.mobile, payment, IFNULL(less, 0) - IFNULL(charge, 0), IFNULL(bill_amount, 0) - IFNULL(payment, 0) - IFNULL(less, 0) + IFNULL(charge, 0) AS total_unpaid, bill_amount", FALSE)
+			->from('transaction_history')
+			->join('customers', 'customers.id=transaction_history.customer_id')
+			->where('customer_id', $customer);
+
+		}else{
+
+			$this->datatables->select("customers.name, customers.mobile, SUM(payment), SUM(IFNULL(less, 0) - IFNULL(charge, 0)), SUM(IFNULL(bill_amount, 0) - IFNULL(payment, 0) - IFNULL(less, 0) + IFNULL(charge, 0)) AS total_unpaid, SUM(bill_amount)", FALSE)
+			->from('transaction_history')
+			->join('customers', 'customers.id=transaction_history.customer_id')
+			->group_by('customer_id');
+
+		}
+
+		if($paid_by && $paid_by!='all') $this->datatables->where('paid_by', $paid_by);
+
+		/*
+		if($last_payment){
+			$this->datatables->where('payment', 0);
+			$this->datatables->where("DATE_FORMAT(STR_TO_DATE(transaction_history.date, '%d/%m/%Y'), '%Y-%m-%d') >=", $last_payment);
+		}
+		*/
+
+		if($start_date && $end_date){
+
+			$this->datatables->where('payment', 0);
+			$this->datatables->where("DATE_FORMAT(STR_TO_DATE(transaction_history.date, '%d/%m/%Y'), '%Y-%m-%d') BETWEEN '{$start_date}' AND '{$end_date}'");
+
+		}elseif($start_date){
+
+			$this->datatables->where('payment', 0);
+			$this->datatables->where("DATE_FORMAT(STR_TO_DATE(transaction_history.date, '%d/%m/%Y'), '%Y-%m-%d') >=", $start_date);
+
+		}elseif($end_date){
+
+			$this->datatables->where('payment', 0);
+			$this->datatables->where("DATE_FORMAT(STR_TO_DATE(transaction_history.date, '%d/%m/%Y'), '%Y-%m-%d') <=", $end_date);			
+
+		}
+
+		/*if($start_date) $this->datatables->where("DATE_FORMAT(STR_TO_DATE(transaction_history.date, '%d/%m/%Y'), '%Y-%m-%d') BETWEEN '". $start_date. "' and '".$end_date."'");*/
+
+		echo $this->datatables->generate();
+   	}
       
 }

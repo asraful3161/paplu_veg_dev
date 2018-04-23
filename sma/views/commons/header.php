@@ -189,6 +189,8 @@
                                     <li><a href="<?php echo base_url(); ?>index.php?module=reports&view=daily_sales"><?php echo $this->lang->line('daily_sales'); ?></a></li>
                                     <li><a href="<?php echo base_url(); ?>index.php?module=reports&view=monthly_sales"><?php echo $this->lang->line('monthly_sales'); ?></a></li>
                                     <li><a href="<?php echo base_url(); ?>index.php?module=reports&view=sales"><?php echo $this->lang->line('sales_report'); ?></a></li>
+                                    <li><a href="<?=base_url()?>index.php?module=reports&view=outstanding_sales"><?php echo $this->lang->line('outstanding_sales_report'); ?></a></li>
+                                    <li><a href="<?=base_url()?>index.php?module=reports&view=outstanding_client"><?php echo $this->lang->line('outstanding_client_report'); ?></a></li>
                                 </ul>
                             </li>
                             

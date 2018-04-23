@@ -17,6 +17,7 @@
 /* I will thankful if you could help me translating this file to your language and email me at saleem@tecdiary.com */
 
 
+$lang['all'] 							= "Semua";
 $lang['home'] 							= "Depan";
 $lang['products'] 						= "Produk";
 $lang['new_product'] 					= "Produk Baru";
@@ -68,6 +69,22 @@ $lang['add_by_csv'] 					= "Tambahkan Produk dengan CSV";
 $lang['purchases_report'] 				= "Laporan Pembelian";
 $lang['csv_inventory'] 					= "Tambahkan Pembelian dengan CSV";
 $lang['sales_report'] 					= "Laporan Penjualan";
+$lang['outstanding_sales_report']		= "Laporan Penjualan yang Luar Biasa";
+$lang['outstanding_client_report']		= "Laporan Klien yang Luar Biasa";
+
+$lang['invoice_amount']					= "Jumlah tagihan";
+$lang['less_amount']					= "Jumlah Kurang";
+$lang['paid_amount']					= "Jumlah pembayaran";
+$lang['outstanding_amount']				= "Jumlah yang luar biasa";
+$lang['paid_by']						= "Dibayar oleh";
+$lang['charge_amount']					= "Jumlah biaya";
+
+$lang['last_payment']					= "Pembayaran terakhir";
+$lang['contact']						= "Kontak";
+$lang['total_paid']						= "Total Dibayar";
+$lang['total_adjustment']				= "Penyesuaian Total";
+$lang['total_unpaid']					= "Jumlah belum dibayar";
+
 $lang['upload_biller_logo'] 			= "Upload Logo Penagih";
 $lang['install'] 						= "Anda Harus Menghapus Folder 'install' di";
 $lang['purchases'] 						= "Pembelian";

@@ -14,6 +14,7 @@
 /* I will thankful if you could help me translating this file to your language and email me at saleem@tecdiary.com */		
 		
 		
+$lang['all'] 							= "Tất cả các";
 $lang['home'] 							= "Trang chủ";
 $lang['products'] 						= "Sản phẩm";
 $lang['new_product'] 					= "Thêm Sản phẩm";
@@ -65,6 +66,22 @@ $lang['add_by_csv'] 					= "Thêm Sản phẩm bằng CSV";
 $lang['purchases_report'] 				= "Báo cáo nhập hàng";
 $lang['csv_inventory'] 					= "Nhập hàng bằng CSV";
 $lang['sales_report'] 					= "Báo cáo bán hàng";
+$lang['outstanding_sales_report']		= "Báo cáo bán hàng nổi bật";
+$lang['outstanding_client_report']		= "Báo cáo khách hàng nổi bật";
+
+$lang['invoice_amount']					= "Số tiền Hoá đơn";
+$lang['less_amount']					= "Số lượng ít";
+$lang['paid_amount']					= "Số tiền thanh toán";
+$lang['outstanding_amount']				= "Số tiền còn nợ";
+$lang['paid_by']						= "Trả theo";
+$lang['charge_amount']					= "Số tiền phí";
+
+$lang['last_payment']					= "Thanh toán Lần cuối";
+$lang['contact']						= "Tiếp xúc";
+$lang['total_paid']						= "Tổng số chi trả";
+$lang['total_adjustment']				= "Tổng điều chỉnh";
+$lang['total_unpaid']					= "Tổng số chưa thanh toán";
+
 $lang['upload_biller_logo'] 			= "Tải lên Logo hóa đơn";
 $lang['install'] 						= "Cài đặt";
 $lang['purchases'] 						= "Nhập hàng";

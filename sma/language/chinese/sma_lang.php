@@ -14,6 +14,7 @@
 /* I will thankful if you could help me translating this file to your language and email me at saleem@tecdiary.com */
 
 #Header
+$lang['all']							= "所有";
 $lang['new_sale'] 						= "新派遣";
 $lang['new_purchase'] 					= "新採購";
 $lang['home'] 							= "首頁";
@@ -63,6 +64,22 @@ $lang['add_by_csv'] 					= "新增器材 by CSV";
 $lang['purchases_report'] 				= "購買器材報告";
 $lang['csv_inventory'] 					= "新增購買 by CSV";
 $lang['sales_report'] 					= "任務報告";
+
+$lang['invoice_amount']					= "发票金额";
+$lang['less_amount']					= "少量";
+$lang['paid_amount']					= "已付金额";
+$lang['outstanding_amount']				= "突出金额";
+$lang['paid_by']						= "由...支付";
+$lang['charge_amount']					= "收费金额";
+
+$lang['last_payment']					= "最后一次付款";
+$lang['contact']						= "联系";
+$lang['total_paid']						= "总支付";
+$lang['total_adjustment']				= "总调整";
+$lang['total_unpaid']					= "总计未付";
+
+$lang['outstanding_sales_report']		= "優秀的銷售報告";
+$lang['outstanding_client_report']		= "傑出的客戶報告";
 $lang['upload_biller_logo'] 			= "上傳票據人Logo";
 $lang['install'] 						= "您必須刪除“安裝”文件夾";
 $lang['purchases'] 						= "購買";

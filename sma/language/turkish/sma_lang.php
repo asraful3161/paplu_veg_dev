@@ -16,6 +16,7 @@
 
 /* I will thankful if you could help me translating this file to your language and email me at saleem@tecdiary.com */
 
+$lang['all'] 							= "Herşey";
 $lang['home'] 							= "Ana Ekran";
 $lang['products'] 						= "Ürünler";
 $lang['new_product'] 					= "Yeni Ürün";
@@ -66,6 +67,22 @@ $lang['add_by_csv'] 					= "CSV İle Ürün Ekle";
 $lang['purchases_report'] 				= "Alım Raporları";
 $lang['csv_inventory'] 					= "CSV İle Alım Raporu Ekle";
 $lang['sales_report'] 					= "Satış Raporları";
+$lang['outstanding_sales_report']		= "Üstün Satış Raporu";
+$lang['outstanding_client_report']		= "Izjemno poročilo stranke";
+
+$lang['invoice_amount']					= "Fatura tutarı";
+$lang['less_amount']					= "Daha Az Tutar";
+$lang['paid_amount']					= "Ödenen miktar";
+$lang['outstanding_amount']				= "Üstün Tutar";
+$lang['paid_by']						= "Ödenen";
+$lang['charge_amount']					= "Ücret Miktarı";
+
+$lang['last_payment']					= "Son ödeme";
+$lang['contact']						= "Temas";
+$lang['total_paid']						= "Toplam Ücretli";
+$lang['total_adjustment']				= "Toplam Ayarlama";
+$lang['total_unpaid']					= "Toplam Ödenmemiş";
+
 $lang['upload_biller_logo'] 			= "Muhasebeci Logosu Yükle";
 $lang['install'] 						= "'install' klasörünü buradan silmelisiniz:";
 $lang['purchases'] 						= "Alımlar";

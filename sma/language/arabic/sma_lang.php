@@ -13,7 +13,7 @@
 
 /* I will thankful if you could help me translating this file to your language and email me at saleem@tecdiary.com */
 
-
+$lang['all']							= "الكل";
 $lang['home'] 							= "الرئيسية";
 $lang['products'] 						= "المنتجات";
 $lang['new_product'] 					= "منتج جديد";
@@ -65,6 +65,22 @@ $lang['add_by_csv'] 					= "إضافة المنتجات عبر ملف القيم
 $lang['purchases_report'] 				= "تقرير المشتريات";
 $lang['csv_inventory'] 					= "إضافة مشتريات عبر ملف القيم المقسومة بفاصلة";
 $lang['sales_report'] 					= "تقرير المبيعات";
+$lang['outstanding_sales_report']		= "تقرير المبيعات المعلقة";
+$lang['outstanding_client_report']		= "تقرير العميل المتميز";
+
+$lang['invoice_amount']					= "قيمة الفاتورة";
+$lang['less_amount']					= "مبلغ أقل";
+$lang['paid_amount']					= "المبلغ المدفوع";
+$lang['outstanding_amount']				= "كمية رهيبة";
+$lang['paid_by']						= "مدفوع";
+$lang['charge_amount']					= "مستوى الشحن";
+
+$lang['last_payment']					= "الدفعة الأخيرة";
+$lang['contact']						= "اتصل";
+$lang['total_paid']						= "مجموع المبالغ المدفوعة";
+$lang['total_adjustment']				= "إجمالي التعديل";
+$lang['total_unpaid']					= "إجمالي الدفعات غير المدفوعة";
+
 $lang['upload_biller_logo'] 			= "تحميل شعار مقدم الفاتورة";
 $lang['install'] 						= "عليك مسح ملف التنصيب من";
 $lang['purchases'] 						= "المشتريات";
