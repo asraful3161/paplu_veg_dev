@@ -858,10 +858,8 @@
 <?php } ?>
 
                     var row_price = parseFloat(p1.val());
-                    //var row_quantity = parseInt(q1.val());
-                    var row_quantity = parseFloat(q1.val());
+                    var row_quantity = parseInt(q1.val());
                     total = total - row_price;
-                    //alert(row_quantity);
                     current = parseFloat(total).toFixed(2);
                     count = count - row_quantity;
                     if (isNaN(count)) {
@@ -1018,11 +1016,8 @@
                             }
                         });
                         var pt = prod_tax ? prod_tax : DT;
-                        var newTr = $('<tr border="1" id="row_' + an + last + '"></tr>');
-                        
-                        //alert(last);    
-                        
-                        newTr.html('<td id="satu" style="text-align:center; width: 27px;"><button type="button" class="del_row" id="del-' + an + last + '" value="' + item_price + '"><i class="icon-trash"></i></button></td><td><input type="hidden" name="product' + an + '" value="' + prod_code + '" id="product-' + an + last + '"><input type="hidden" name="serial' + an + '" value="" id="serial-' + an + last + '"><input type="hidden" name="tax_rate' + an + '" value="' + pt + '" id="tax_rate-' + an + last + '"><input type="hidden" name="discount' + an + '" value="<?php echo DEFAULT_DISCOUNT; ?>" id="discount-' + an + last + '"><a href="#" id="model-' + an + last + '" class="code">' + prod_name + '</a><input type="hidden" name="price' + an + '" value="' + parseFloat(item_price).toFixed(2) + '" id="oprice-' + an + last + '"></td><td style="text-align:center;"><input class="keyboard" onClick="this.select();" name="quantity' + an + '" type="text" value="1" autocomplete="off" id="quantity-' + an + last + '"></td><td style="text-align:center;"><input type="text" class="price" name="realprice" value="' + parseFloat(item_mainprice).toFixed(2) + '"></td><td style="text-align:center;"><input type="text" class="price" name="cusItemDiscountprice" value="' + parseFloat(item_discount).toFixed(2) + '" id="cusItemDiscountprice-' + an + last + '"><td style="padding-right: 10px; text-align:right;"><input style="padding-left:10px" type="text" class="price" name="unit_price' + an + '" value="' + parseFloat(item_price).toFixed(2) + '" id="price-' + an + last + '"></td>');
+                        var newTr = $('<tr border="1" id="row_' + count + last + '"></tr>');
+                        newTr.html('<td id="satu" style="text-align:center; width: 27px;"><button type="button" class="del_row" id="del-' + count + last + '" value="' + item_price + '"><i class="icon-trash"></i></button></td><td><input type="hidden" name="product' + count + '" value="' + prod_code + '" id="product-' + count + last + '"><input type="hidden" name="serial' + count + '" value="" id="serial-' + count + last + '"><input type="hidden" name="tax_rate' + count + '" value="' + pt + '" id="tax_rate-' + count + last + '"><input type="hidden" name="discount' + count + '" value="<?php echo DEFAULT_DISCOUNT; ?>" id="discount-' + count + last + '"><a href="#" id="model-' + count + last + '" class="code">' + prod_name + '</a><input type="hidden" name="price' + count + '" value="' + parseFloat(item_price).toFixed(2) + '" id="oprice-' + count + last + '"></td><td style="text-align:center;"><input class="keyboard" onClick="this.select();" name="quantity' + count + '" type="text" value="1" autocomplete="off" id="quantity-' + count + last + '"></td><td style="text-align:center;"><input type="text" class="price" name="realprice" value="' + parseFloat(item_mainprice).toFixed(2) + '"></td><td style="text-align:center;"><input type="text" class="price" name="cusItemDiscountprice" value="' + parseFloat(item_discount).toFixed(2) + '" id="cusItemDiscountprice-' + count + last + '"><td style="padding-right: 10px; text-align:right;"><input style="padding-left:10px" type="text" class="price" name="unit_price' + count + '" value="' + parseFloat(item_price).toFixed(2) + '" id="price-' + count + last + '"></td>');
 
                         newTr.appendTo("#saletbl");
 
@@ -1159,17 +1154,15 @@
                         usePreview: false,
                         customLayout: {
                             'default': [
-                                '.5 1 2 3 {b}',
+                                '1 2 3 {b}',
                                 '4 5 6 {clear}',
                                 '7 8 9 0',
                                 '{accept} {cancel}'
                             ]
                         },
                         beforeClose: function(e, keyboard, el, accepted) {
-                            //var before_qty = parseInt(keyboard.originalContent);
-                            //var after_qty = parseInt(el.value);
-                            var before_qty = parseFloat(keyboard.originalContent);
-                            var after_qty = parseFloat(el.value);
+                            var before_qty = parseInt(keyboard.originalContent);
+                            var after_qty = parseInt(el.value);
                             var row_id = $(this).attr('id');
                             var sp_id = row_id.split("-");
                             var id_no = sp_id[1];
@@ -1387,6 +1380,8 @@
                             return false;
                     }
 
+
+
                     $('#gmail_loading').show();
                             var v = $(this).val();
                             $.ajax({
@@ -1423,7 +1418,7 @@
                         }
                     });
                             var pt = prod_tax ? prod_tax : DT;
-                            var newTr = $('<tr id="row_' + an + slast + '"></tr>');
+                            var newTr = $('<tr id="row_' + count + slast + '"></tr>');
                             newTr.html('<td id="satu" style="text-align:center; width: 27px;">\n\
                         <button type="button" class="del_row" id="del-' + count + slast + '" value="' + item_price + '"><i class="icon-trash"></i></button></td><td>\n\
 <input type="hidden" name="product' + count + '" value="' + sproduct_code + '" id="product-' + count + slast + '">\n\
@@ -1653,7 +1648,7 @@
                         usePreview: false,
                         customLayout: {
                             'default': [
-                                '.5 1 2 3 {clear}',
+                                '1 2 3 {clear}',
                                 '4 5 6 .',
                                 '7 8 9 0',
                                 '{accept} {cancel}'
@@ -1738,8 +1733,7 @@
                                     sale_data = "<tbody></tbody>";
                                 }
                                 if (data.count != null) {
-                                    //sale_count = parseInt(data.count);
-                                    sale_count = parseFloat(data.count);
+                                    sale_count = parseInt(data.count);
                                 } else {
                                     sale_count = 1;
                                 }
